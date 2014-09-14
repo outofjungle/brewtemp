@@ -6,18 +6,22 @@
 #define SPEAKER_PIN 10
 #define ONE_WIRE_BUS 5
 
+int resolution = 12;
 OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature sensors(&oneWire);
 LiquidCrystal lcd(0);
+DeviceAddress device_address;
 
-const float limits[] = { 80.00, 85.00 };
+const double limits[] = { 148.00, 152.00 };
 
-float temp;
+double temp;
 void setup(void)
 {
   temp = 0;
   lcd.begin(16, 2);
   sensors.begin();
+  sensors.getAddress(device_address, 0);
+  sensors.setResolution(device_address, resolution);
 }
 
 void loop(void)
