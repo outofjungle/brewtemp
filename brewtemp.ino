@@ -22,6 +22,13 @@ void setup(void)
   sensors.begin();
   sensors.getAddress(device_address, 0);
   sensors.setResolution(device_address, resolution);
+  
+  lcd.setCursor(0, 1);
+  lcd.print(limits[0]);
+  lcd.print("-");
+  lcd.print(limits[1]);
+  lcd.print( (char) 0xdf );
+  lcd.print("F");
 }
 
 void loop(void)
@@ -40,7 +47,7 @@ void loop(void)
   lcd.print(temp);
   lcd.print( (char) 0xdf );
   lcd.print("F");
-  
+
   delay(100);
 }
 
